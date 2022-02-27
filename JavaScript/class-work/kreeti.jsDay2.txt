@@ -1,0 +1,160 @@
+// var vs let/const
+
+// var only has global and function scope
+// let/const has block scope wich includes global and function scope as well
+
+// This is function scope
+function test() { var x = 10; }
+test();
+console.log(x); // x is not defined
+
+// This is block scope
+{ var y = 20; }
+console.log(y); // 20
+
+// This is again block scope
+console.log(z); // z is not defined
+for(var z=0; z < 10; z++) {}
+console.log(z); // 10
+
+
+
+// ----------------------------------------
+
+// Common String methods
+
+const str = "abcdefgh";
+          // 01234567
+
+str.length; // 8
+
+str.slice(4, -1); // efg
+
+str.toLowerCase(); // "abcdefgh";
+
+str.split(""); // ["a", "b", "c", "d", "e", "f", "g", "h"]
+
+["a", "b", "c", "d", "e", "f", "g", "h"].join(";"); // "a;b;c;d;e;f;g;h"
+
+// ----------------------------------------
+
+
+// Regular expression are patterns used to match character combinations in strings.
+// Regular expressions can be used with different methods like exec, test, match, replace, etc
+
+
+// Commonly used Modifiers
+
+/*
+
+ i -> Case-insensitive matching
+ g -> Global match
+
+*/
+
+let x = "School is where people are schooled";
+x.replace(/school/i, "home"); // home is where people are schooled
+
+
+let y = "School is where people are schooled";
+y.replace(/school/ig, "home"); // home is where people are homeed
+
+/*
+
+More examples and regex references
+
+https://www.w3schools.com/jsref/jsref_obj_regexp.asp
+https://eloquentjavascript.net/09_regexp.html
+*/
+
+// ----------------------------------------
+
+// Strict mode Directive
+// Added either begining of function or begin of script
+"use strict";
+
+// cannot use variable without declaring it
+pi = 3.14;
+
+
+// cannot use duplicate function parameter
+"use strict";
+
+function test(p, p) {};
+
+
+// Reserved identifiers names not allowed like let, static, package, public, etc
+
+// Value of this is "undefined" in strict context
+function example() {
+    return this;
+}
+
+console.log(example() == window); // true
+
+function example() {
+    "use strict";
+    return this;
+}
+
+console.log(example() == undefined); // true
+
+// ----------------------------------------
+
+
+// Closures
+
+// A closure is the combination of a function and the 
+// lexical environment within which that function was declared.
+
+// A simple example
+
+function init() {
+  
+  let fname = "Arp";
+  
+  function getName() {
+    alert(fname);
+  }
+  
+  return getName;
+};
+
+var alertName = init();
+alertName(); // WORKS !
+
+
+// A practical example
+
+function makeAdder(numX) {
+  return function(numY) { return numX + numY; }
+}
+
+var fiveAdder = makeAdder(5);
+var tenAdder = makeAdder(10);
+
+console.log(fiveAdder(10)); // 15
+console.log(tenAdder(10)); // 20
+
+
+// Another more complex example of closure
+function buildFunctions() {
+  
+  var arr = [];
+  
+  for(var i = 0; i < 3; i++) { // Change var to let for 0,1,2
+    
+    arr.push(function() {
+      console.log(i);
+    })
+    
+  }
+  
+  return arr;
+}
+
+var fs = buildFunctions();
+
+fs[0](); // 3
+fs[1](); // 3
+fs[2](); // 3

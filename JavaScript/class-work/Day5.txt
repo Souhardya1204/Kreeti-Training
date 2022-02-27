@@ -1,0 +1,102 @@
+// JS CLASS, examples for prototype and prototypical inheritance
+
+// ==== __proto__ and prototype ====
+// A prototype is a property on a constructor function that sets what 
+// will become the __proto__ property on the constucted object.
+
+function Person(fname, age) {
+  this.fname= fname;
+  this.age = age;
+  // implicit return 'this' when using "new Person()"
+}
+
+// Person("Sam", 22); // window.fname == "Sam"
+var p1 = new Person("Same", 22);
+
+
+
+p1.__proto__ == Person.prototype; // true
+
+
+var arr = []; // new Array();
+
+arr.__proto__ == Array.prototype; // true
+
+
+// Don't do this, its just an example
+Array.prototype.isEven = function() { 
+  return this.length % 2 == 0; 
+}
+
+var arr = [1,2,3];
+arr.isEven(); // false
+// The 'Object' is at the top of the prototye chain in javascript
+
+
+
+// ==== Prototypal Inheritance ====
+
+// IMPORTANT: 'this' does not change while going up prototype chain
+
+var parent = { 
+  country: 'India', 
+  getCountry: function() {
+    return this.country;
+  } 
+};
+
+var child = Object.create(parent); // child.__proto__ == parent
+
+child.country = 'US';
+
+var grandChild = Object.create(child); // grandChild.__proto__ == child
+
+console.log(parent.getCountry());     // India
+
+console.log(child.getCountry());      // US
+
+console.log(grandChild.getCountry()); // US
+
+
+
+
+
+
+
+
+
+
+
+// Classes in javascript are a new concept which came in ES6 actually classes are nothing but functions under the hood.
+// Classes were introduced in JavaScript so that developers from other OOP languages like java feel more comfortable switching to javascript.
+// Take a look at this example, it shows how classes are also doing the prototype  and _proto_ linking when try do inheritance.
+
+class Animal {
+  
+  constructor(name) {
+    this.name = name;
+  }
+  
+  speak() {
+    console.log(this.name + " make noise");
+  }
+}
+
+class Dog extends Animal {
+  constructor(name) {
+    super(name);
+  }
+  
+  speak() {
+    console.log(this.name + " barks");
+  }
+}
+
+var dog_object = new Dog("Tomy");
+
+
+dog_object.speak(); // Tomy barks
+
+// Internally what "Dog extends Animal" does is this...
+
+Dog.prototype.__proto__ === Animal.prototype; // returns true

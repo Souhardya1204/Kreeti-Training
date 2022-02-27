@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* .red{
+    background-color: red;
+    color: white;
+}
+#head{
+    background-color: aqua;
+}
+
+.border{
+    border: 2px solid black;
+} */
+
+/* body{
+    background-image: url("dog.jpg"); 
+     background-repeat: no-repeat; 
+    background-size: cover;
+} */
+ 
+.container{
+    width: 750px;
+    height: 1000px;
+    background-image: url("dog.jpg");
+    background-repeat: no-repeat;
+    background-size: 200px 250px;
+    border: 2px solid red;
+    background-position: center;
+    background-attachment: local;
+} 

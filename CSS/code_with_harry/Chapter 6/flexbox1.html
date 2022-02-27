@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox</title>
+    <style>
+        header{
+            height: 70px;
+            background-color: black;
+            position: sticky;
+            top:0;
+            padding-top: 10px;
+        }
+        ul{
+            float: right;
+        }
+
+        li{
+            padding:  20px;
+            display: inline;
+            list-style: none;
+            
+        }
+       li a{
+        text-decoration: none;
+        color:white
+        }
+        li a:hover{
+            background-color: white;
+            color: black;
+        }
+        .box1{
+            width: 230px;
+            height: 330px;
+            background-color: aqua;
+            display: inline-block;
+        }
+
+        .box2{
+            width: 230px;
+            height: 330px;
+            background-color: brown;
+            display: inline-block;
+        }
+        .logo{
+            float: left;
+            padding-left:1vw ;
+            height: 50px;
+            width: 60px;
+        }
+        .content{
+            height: 25vh;
+        }
+        .dog{
+            width:350px ;
+            height: auto;
+            float: right;
+        }
+        .container{
+            height: 120vh;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <img class="logo"src="logo.jpg" alt="Logo">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="content">
+            <img class="dog" src="dog.jpg" alt="Dog">
+            <p>
+            
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore id optio cupiditate ea esse laboriosam recusandae iste cum blanditiis alias eius quae aut dolorem unde architecto temporibus, rerum natus itaque at soluta quia culpa minus! Corporis necessitatibus excepturi voluptates harum, assumenda, officia omnis esse consequuntur ex perspiciatis saepe optio adipisci veritatis eligendi, culpa magni? Fuga saepe sit ratione sunt ut laborum asperiores molestiae excepturi omnis quia nobis, inventore eius consequatur commodi ullam ea odit. Consequatur expedita sit quo similique? Atque iusto assumenda, enim mollitia, hic magni doloribus ipsa nisi similique corporis aliquid inventore sequi reprehenderit vitae, delectus pariatur neque laborum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rerum vel exercitationem soluta? Officia dolorem fuga saepe dicta in! Commodi sint ab iusto fuga ut dolorum similique nulla, magni assumenda aspernatur ipsa pariatur! Iste repellat sapiente earum eius, ad minus, quam deserunt fugiat modi incidunt distinctio quidem quisquam asperiores expedita!
+            </p>
+        </div>
+        
+        <div class="box1">
+            Box1
+        </div>
+        <div class="box2">
+            Box2
+        </div>
+    </div>
+</body>
+</html>

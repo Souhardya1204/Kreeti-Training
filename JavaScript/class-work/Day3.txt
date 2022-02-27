@@ -1,0 +1,134 @@
+// var vs undeclared varaible
+
+myFunc();
+
+console.log(name); // Arp
+// console.log(name1); // name1 is not defined
+
+function myFunc() {
+  name = "Arp";          // Global scope
+  var name1 = "Tom";     // Function scope
+}
+
+// ------------------
+
+// Arrow functions
+https://kreeti.github.io/advanced_js_slides/#/9
+
+// ------------------
+
+// What is 'this' ?
+var fname = 'test';
+
+var person = {
+    fname: "Joy",
+    age: 21,
+    greet: function() {
+        console.log(this.fname);
+    },
+    /*
+    For arrow functions
+    'this' is set to what it was when it was created.
+    The same applies to arrow functions created inside other
+    functions: their 'this' remains that of the enclosing lexical context.
+    
+    With arrows functions we can't use call, apply, bind to set the value of 'this'
+    */
+
+    greetv2: () => {
+        let fname = "123";
+        console.log(fname);
+    },
+  
+  
+    giveThis: this // Here 'this' is the window object
+};
+
+
+// Joy
+console.log(person.greet());
+
+
+// test
+console.log(person.greetv2());
+
+
+// Wont work; window object does not have a 'greet()' function
+// console.log(person.giveThis.greet());
+
+
+
+var ob = {
+    test: 'arp'
+}
+
+function getName() {
+    return this.test;
+}
+getName(); // undefined; window object does not have "test"
+
+ob.getName = getName;
+
+ob.getName(); // arp
+
+
+
+// ------------------------------------------------------
+
+
+// call vs apply vs bind
+var person1 = {
+    fname: 'abc',
+    age: 10
+};
+var person2 = {
+    fname: 'efg',
+    age: 20
+};
+
+function greet(val) {
+    console.log(`Name = ${this.fname}  Age = ${this.age} passed values ${val}`);
+}
+
+var greetV2 = (val) => {
+    console.log(`Name = ${this.fname}  Age = ${this.age} passed values ${val}`);
+}
+
+
+greet(10);                   // "Name = test  Age = undefined passed values 10"
+
+
+greet.call(person1, 10);     // "Name = abc  Age = 10 passed values 10"
+greet.call(person2, 20);     // "Name = efg  Age = 20 passed values 20"
+
+
+greet.apply(person2, [100]); // "Name = efg  Age = 20 passed values 100"
+
+
+greetV2.call(person1, 30);   // "Name = test  Age = undefined passed values 30"
+
+
+
+
+
+var f = greet.bind(person1);
+f(10);                       // "Name = abc  Age = 10 passed values 10"
+
+
+// ------------------
+
+
+// IIFE - Immediately Invoked function expression / Self executing function
+var result = (function() {
+    var pop = "pop";
+    return pop;
+})();
+
+result // "pop"
+result() // ERROR
+
+
+// ------------------
+
+// Destructuring in JS
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment

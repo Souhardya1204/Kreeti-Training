@@ -1,0 +1,107 @@
+// Understand the concept of event loop: Refer to slides
+
+// PROMISES
+
+
+// A promise is an object that serves as a proxy for a value 
+// not known when the promise is created.
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+// A Promise is in one of these states:
+
+// pending: initial state, neither fulfilled nor rejected.
+// fulfilled: meaning that the operation was completed successfully.
+// rejected: meaning that the operation failed.
+
+
+// A simple example of promise chaining
+
+var p = new Promise(function(resolve, reject) {
+  // network call
+  
+  setTimeout(function() { 
+    resolve("Done");
+    
+    // reject("Failed");
+    
+  }, 2000);
+  
+  
+});
+
+console.log("I GOT EXECUTED")
+
+p.then(
+  function(value) { console.log(`Got this value on resolve ${value}`); },
+  function(error) { console.log(`Got this error on reject ${error}`); }
+);
+
+
+
+// OR use catch
+//  .catch(function(error) {
+//   console.log(`Got this error on reject ${error}`);
+// });
+
+
+// The catch method returns a promise and restores the promise chain,
+// so further `then` calls
+// after the catch will work
+
+
+
+// We can return a value from inside a "then" callback function, the returned value is 
+// send again to the next chained "then", the returned value is wrapped up inside a promise
+// so that further then calls can be chained.
+
+// If there are no catch blocks or then blocks to catch error, then reject promises result in exception
+
+
+// But inside a then block if we again want to perform a long running task, to do that we need
+// wrap that task again in a promise and manually return the promise from the then callback
+
+
+// Example:
+
+var p = new Promise(function (resolve, reject) {
+  
+    setTimeout(function () {
+        console.log("Inside a long running task...");
+      
+        //resolve("Long running task was success");
+      
+         reject("REJECTION MESSAGE"); // When this happens further promises in chain are cancelled and a catch block or then block must catch it
+    }, 3000);
+  
+  
+}).then(function (value) {
+  
+  
+    var p1 = new Promise(function (resolve, reject) {
+      
+        setTimeout(function () {
+            console.log("Inside a small running task...");
+            resolve(value + " Small running task was success");
+        }, 1000);
+      
+      
+    });
+
+    return p1;
+}).then(function (value) {
+  
+    console.log("I get executed immediately after previous promises in my chain are done", value);
+  
+  
+    return "This value will be wrapped in a promise flow further down the chain";
+  
+}).catch(function(error) {
+  
+    console.log('Got this error in the promise chain');
+  
+});
+
+// Common promised based functions to check:
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/any
+// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
