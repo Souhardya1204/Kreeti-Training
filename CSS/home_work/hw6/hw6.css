@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+}
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr ;
+    background-color: blue;
+    row-gap: 10px;
+    column-gap: 10px;
+    padding: 10px;
+ 
+}
+.grid-item{
+    height: 20vh;
+    background-color: aqua;
+    border: 2px solid black;
+    text-align: center;
+    padding: 10px;
+}
