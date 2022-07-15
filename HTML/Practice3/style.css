@@ -1,0 +1,43 @@
+html,body { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   overflow-x: hidden;
+}
+.banner {
+  height: 100vh;
+  background-image: url("images/landing.jpeg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: white;
+  padding: 5rem 0;
+}
+
+.middle {
+  background-color: black;
+  color: white;
+  padding: 2rem;
+}
+.card {
+  box-shadow: 0 10px 2px -6px rgba(100, 100, 100, 0.26);
+  text-align: justify;
+}
+.con_ab {
+  color: white;
+  text-align: justify;
+}
+.contact {
+  background-color: #515603;
+  padding: 4rem;
+}
+
+.about {
+  background-color: #722300;
+  padding: 4rem;
+}
+
+footer{
+    background-color: #000000;
+    color: white;
+    padding: 2rem;
+}

@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: gray;
+}
+
+.container{
+    margin: 50px auto;
+}
+
+.apply_box{
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
